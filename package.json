@@ -1,0 +1,16 @@
+{
+  "name": "fy-scrape",
+  "version": "1.0.0",
+  "description": "Scrape regional track data from Spotify Charts.",
+  "repository": "https://github.com/harshcut/fy-scrape.git",
+  "author": "Harsh Karande",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node --loader @k-foss/ts-esnode --experimental-specifier-resolution=node ./src/index.ts"
+  },
+  "devDependencies": {
+    "@k-foss/ts-esnode": "^2.0.2",
+    "@types/node": "^16.6.1",
+    "typescript": "^4.3.5"
+  }
+}
