@@ -5,8 +5,17 @@
   "repository": "https://github.com/harshcut/fy-scrape.git",
   "author": "Harsh Karande",
   "license": "MIT",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/mjs/index.js",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/mjs/index.js"
+    }
+  },
   "scripts": {
-    "dev": "node --loader @k-foss/ts-esnode --experimental-specifier-resolution=node ./src/index.ts"
+    "dev": "node --loader @k-foss/ts-esnode --experimental-specifier-resolution=node ./src/index.ts",
+    "build": "clean-build.sh && publish-config.sh"
   },
   "devDependencies": {
     "@k-foss/ts-esnode": "^2.0.2",
