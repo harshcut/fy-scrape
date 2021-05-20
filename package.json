@@ -18,6 +18,9 @@
     "build": "clean-build.sh && publish-config.sh",
     "lint": "eslint . --ext .js,.ts"
   },
+  "dependencies": {
+    "puppeteer": "^10.2.0"
+  },
   "devDependencies": {
     "@k-foss/ts-esnode": "^2.0.2",
     "@types/node": "^16.6.1",
