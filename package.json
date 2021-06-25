@@ -19,6 +19,7 @@
     "lint": "eslint . --ext .js,.ts"
   },
   "dependencies": {
+    "ora": "^5.4.1",
     "puppeteer": "^10.2.0"
   },
   "devDependencies": {
