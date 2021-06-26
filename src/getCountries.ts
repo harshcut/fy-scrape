@@ -5,7 +5,11 @@ export type CountryList = {
   country: string;
 }[];
 
-const getCountries = async (): Promise<CountryList> => {
+interface OptionalProps {
+  code?: string;
+}
+
+const getCountries = async (option?: OptionalProps): Promise<CountryList> => {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   await page.goto('https://spotifycharts.com/regional', {
@@ -20,7 +24,10 @@ const getCountries = async (): Promise<CountryList> => {
       }))
   );
   await browser.close();
-  return countries;
+  return countries.filter(({ code }) => {
+    if (option?.code) return option?.code?.split(',').includes(code);
+    return true;
+  });
 };
 
 export default getCountries;

@@ -7,7 +7,15 @@ export type ChartData = {
   url: string;
 }[];
 
-const getChartData = async (code: string): Promise<ChartData> => {
+interface OptionalProps {
+  start?: number;
+  end?: number;
+}
+
+const getChartData = async (
+  code: string,
+  option?: OptionalProps
+): Promise<ChartData> => {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   await page.goto(`https://spotifycharts.com/regional/${code}/daily/latest`, {
@@ -29,7 +37,7 @@ const getChartData = async (code: string): Promise<ChartData> => {
     }))
   );
   await browser.close();
-  return data;
+  return data.slice(option?.start, option?.end);
 };
 
 export default getChartData;

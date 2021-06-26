@@ -6,7 +6,7 @@ import fileHandler, { ExportData } from './fileHandler';
 const spinner = ora();
 const data: ExportData = {};
 
-export const fyScrape = async (): Promise<void> => {
+const fyScrape = async (): Promise<void> => {
   spinner.start('Get list of countries supported by Spotify');
   const countries = await getCountries();
   spinner.succeed();
@@ -20,8 +20,8 @@ export const fyScrape = async (): Promise<void> => {
   }
   spinner.succeed('Get top 200 chart data for each country');
   spinner.start('Save data to root of the project repository');
-  fileHandler(data);
+  await fileHandler(data);
   spinner.succeed();
 };
 
-void fyScrape();
+export { fyScrape, getCountries, getChartData, fileHandler };

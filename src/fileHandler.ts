@@ -5,10 +5,22 @@ export type ExportData = {
   [key: string]: ChartData;
 };
 
-const fileHandler = (data: ExportData): void => {
-  fs.writeFile('./chart-data.json', JSON.stringify(data), (err) => {
-    if (err) return console.error(err);
-  });
+interface OptionalProps {
+  path?: string;
+  space?: number;
+}
+
+const fileHandler = async (
+  data: ExportData,
+  option?: OptionalProps
+): Promise<void> => {
+  fs.writeFile(
+    option?.path ?? './chart-data.json',
+    JSON.stringify(data, null, option?.space),
+    (err) => {
+      if (err) return console.error(err);
+    }
+  );
 };
 
 export default fileHandler;
